@@ -1,0 +1,329 @@
+{
+	"info": {
+		"_postman_id": "74a06a53-2f83-4110-b7bb-519c8b03812c",
+		"name": "Assignment_6",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27062309"
+	},
+	"item": [
+		{
+			"name": "TC1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//validate response status\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Request response body\r",
+							"var RequestBody = pm.request.body.raw;\r",
+							"RequestBody = JSON.parse(RequestBody);\r",
+							"req_Name = RequestBody.Name;\r",
+							"res_job  = RequestBody.job;\r",
+							"\r",
+							"//define date\r",
+							"var actualdate = new Date().toJSON().slice(0,13);\r",
+							"\r",
+							"//Ectact of Response body\r",
+							"var ResponseBody = pm.response.json();\r",
+							"\r",
+							"var res_name = ResponseBody.Name;\r",
+							"var res_job = ResponseBody.job;\r",
+							"var res_id =ResponseBody.id;\r",
+							"var res_createdAt = ResponseBody.createdAt;\r",
+							"   res_createdAt =res_createdAt.slice(0,13);\r",
+							"\r",
+							"//Validation of Response Body\r",
+							"\r",
+							"pm.test(\"Validation of Parameter Name\", function(){\r",
+							"    pm.expect(res_name).to.eql(req_Name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validation of Parameter job\", function(){\r",
+							"    pm.expect(res_job).to.eql(res_job);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validation of Parameter Id\", function(){\r",
+							"    pm.expect(res_id).to.not.null;\r",
+							"    pm.expect(res_id).to.not.eql(0);\r",
+							"});\r",
+							"\r",
+							"/*pm.test(\"Validation of Parameter Date\", function(){\r",
+							"    pm.expect(res_createdAt).to.eql(actualdate);\r",
+							"});*/\r",
+							"pm.test(\"Validate Response Body Parameter Date\",function(){\r",
+							"    pm.expect(res_createdAt).to.eql(actualdate);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var name=pm.variables.replaceIn('{{$randomFirstName}}');\r",
+							" pm.collectionVariables.set(\"Coll_name\",name);\r",
+							"var job = pm.variables.replaceIn('{{$randomJobTiltle}}');\r",
+							" pm.collectionVariables.set(\"Coll_Job\",job);\r",
+							"  console.log(job);\r",
+							"//var Address = pm.variables.replaceIn('{{$randomAddress}}');\r",
+							"//pm.collectionVariables.set(\"Coll_Address\",Address)\r",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"{{Coll_name}}\",\r\n    \"Job\"  : \"{{Coll_Job}}\"\r\n   // \"address\" : \"{{Coll_address}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC1 Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//validate response status\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Request response body\r",
+							"var RequestBody = pm.request.body.raw;\r",
+							"RequestBody = JSON.parse(RequestBody);\r",
+							"req_Name = RequestBody.Name;\r",
+							"res_job  = RequestBody.job;\r",
+							"\r",
+							"//define date\r",
+							"var actualdate = new Date().toJSON().slice(0,13);\r",
+							"\r",
+							"//Ectact of Response body\r",
+							"var ResponseBody = pm.response.json();\r",
+							"\r",
+							"var res_name = ResponseBody.Name;\r",
+							"var res_job = ResponseBody.job;\r",
+							"var res_id =ResponseBody.id;\r",
+							"var res_createdAt = ResponseBody.createdAt;\r",
+							"   res_createdAt =res_createdAt.slice(0,13);\r",
+							"\r",
+							"//Validation of Response Body\r",
+							"\r",
+							"pm.test(\"Validation of Parameter Name\", function(){\r",
+							"    pm.expect(res_name).to.eql(req_Name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validation of Parameter job\", function(){\r",
+							"    pm.expect(res_job).to.eql(res_job);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validation of Parameter Id\", function(){\r",
+							"    pm.expect(res_id).to.not.null;\r",
+							"    pm.expect(res_id).to.not.eql(0);\r",
+							"});\r",
+							"\r",
+							"/*pm.test(\"Validation of Parameter Date\", function(){\r",
+							"    pm.expect(res_createdAt).to.eql(actualdate);\r",
+							"});*/\r",
+							"pm.test(\"Validate Response Body Parameter Date\",function(){\r",
+							"    pm.expect(res_createdAt).to.eql(actualdate);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var name=pm.variables.replaceIn('{{$randomFirstName}}');\r",
+							" pm.collectionVariables.set(\"Coll_name\",name);\r",
+							"var job = pm.variables.replaceIn('{{$randomJobTiltle}}');\r",
+							"  pm.collectionVariables.set(\"Coll_Job\",job);\r",
+							"  console.log(job);\r",
+							"//var Address = pm.variables.replaceIn('{{$randomAddress}}');\r",
+							"//pm.collectionVariables.set(\"Coll_Address\",Address)\r",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"{{Coll_name}}\",\r\n    \"job\"  : \"{{Coll_job}}\"\r\n   // \"address\" : \"{{Coll_address}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TC1 Copy 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//validate response status\r",
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"//Request response body\r",
+							"var RequestBody = pm.request.body.raw;\r",
+							"RequestBody = JSON.parse(RequestBody);\r",
+							"req_Name = RequestBody.Name;\r",
+							"res_job  = RequestBody.job;\r",
+							"\r",
+							"//define date\r",
+							"var actualdate = new Date().toJSON().slice(0,13);\r",
+							"\r",
+							"//Ectact of Response body\r",
+							"var ResponseBody = pm.response.json();\r",
+							"\r",
+							"var res_name = ResponseBody.Name;\r",
+							"var res_job = ResponseBody.job;\r",
+							"var res_id =ResponseBody.id;\r",
+							"var res_createdAt = ResponseBody.createdAt;\r",
+							"   res_createdAt =res_createdAt.slice(0,13);\r",
+							"\r",
+							"//Validation of Response Body\r",
+							"\r",
+							"pm.test(\"Validation of Parameter Name\", function(){\r",
+							"    pm.expect(res_name).to.eql(req_Name);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validation of Parameter job\", function(){\r",
+							"    pm.expect(res_job).to.eql(res_job);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validation of Parameter Id\", function(){\r",
+							"    pm.expect(res_id).to.not.null;\r",
+							"    pm.expect(res_id).to.not.eql(0);\r",
+							"});\r",
+							"\r",
+							"/*pm.test(\"Validation of Parameter Date\", function(){\r",
+							"    pm.expect(res_createdAt).to.eql(actualdate);\r",
+							"});*/\r",
+							"pm.test(\"Validate Response Body Parameter Date\",function(){\r",
+							"    pm.expect(res_createdAt).to.eql(actualdate);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var name=pm.variables.replaceIn('{{$randomFirstName}}');\r",
+							" pm.collectionVariables.set(\"Coll_name\",name);\r",
+							"var job = pm.variables.replaceIn('{{$randomJobTiltle}}');\r",
+							"  pm.collectionVariables.set(\"Coll_Job\",job);\r",
+							"  console.log(job);\r",
+							"//var Address = pm.variables.replaceIn('{{$randomAddress}}');\r",
+							"//pm.collectionVariables.set(\"Coll_Address\",Address)\r",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"{{Coll_name}}\",\r\n    \"job\"  : \"{{Coll_job}}\"\r\n   // \"address\" : \"{{Coll_address}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://reqres.in/api/users",
+					"protocol": "https",
+					"host": [
+						"reqres",
+						"in"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "Coll_name",
+			"value": ""
+		},
+		{
+			"key": "Coll_Job",
+			"value": ""
+		},
+		{
+			"key": "Coll_Address",
+			"value": ""
+		},
+		{
+			"key": "Coll_job",
+			"value": ""
+		},
+		{
+			"key": "Coll_Name",
+			"value": ""
+		}
+	]
+}
